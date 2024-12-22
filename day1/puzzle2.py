@@ -15,12 +15,15 @@ for line in lines:
     column1.append(int(matched.group(1)))
     column2.append(int(matched.group(2)))
 
-column1_sorted = sorted(column1)
-column2_sorted = sorted(column2)
+similarity_score = 0
 
-total_distance = 0
+for col1_val in column1:
+    count_of_matches = 0
 
-for i in range(len(column1_sorted)):
-    total_distance += abs(column2_sorted[i] - column1_sorted[i])
+    for col2_val in column2:
+        if col1_val == col2_val:
+            count_of_matches += 1
 
-print(total_distance)
+    similarity_score += col1_val * count_of_matches
+
+print(similarity_score)
